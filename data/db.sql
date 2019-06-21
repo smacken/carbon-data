@@ -1,0 +1,3 @@
+CREATE TABLE `Prices` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, `date` TEXT UNIQUE, `bid` NUMERIC, `offer` NUMERIC, `spot` NUMERIC )
+
+CREATE INDEX `Prices_byDate` ON `Prices` ( `date` )

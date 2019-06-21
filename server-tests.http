@@ -1,0 +1,4 @@
+GET http://127.0.0.1:3000/
+
+###  Get with date range
+GET http://127.0.0.1:3000/?from=2017-01-01&to=2018-01-01

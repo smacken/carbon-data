@@ -1,0 +1,46 @@
+{
+    "name": "carbon-data",
+    "version": "0.0.1",
+    "description": "retrieve carbon nzu data",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "scrape": "node index.js",
+        "import": "node import.js --input data/nzu-edited-raw-prices-data.csv",
+        "server": "node server.js --port 3000",
+        "test": "./node_modules/.bin/mocha --reporter spec"
+    },
+    "author": "Scott Mackenzie",
+    "license": "ISC",
+    "engines": {
+        "node": ">=6"
+    },
+    "dependencies": {
+        "@types/cron": "^1.6.1",
+        "@types/winston": "^2.4.4",
+        "cheerio": "^1.0.0-rc.2",
+        "cron": "^1.6.0",
+        "csv-parse": "^4.3.3",
+        "fastify": "^2.0.0",
+        "minimist": "^1.2.0",
+        "puppeteer": "^1.13.0",
+        "request": "^2.88.0",
+        "request-promise": "^4.2.4",
+        "sqlite": "^3.0.2",
+        "winston": "^3.2.1"
+    },
+    "devDependencies": {
+        "@salecycle/fastify-typescript-request-schema": "^3.2.1",
+        "@types/chai": "^4.1.7",
+        "@types/cheerio": "^0.22.10",
+        "@types/csv-parse": "^1.1.12",
+        "@types/minimist": "^1.2.0",
+        "@types/mocha": "^5.2.6",
+        "@types/node": "^11.10.4",
+        "@types/puppeteer": "^1.12.1",
+        "@types/sqlite3": "^3.1.4",
+        "chai": "^4.2.0",
+        "mocha": "^6.0.2",
+        "mocha-typescript": "^1.1.17"
+    }
+}
