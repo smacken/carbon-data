@@ -16,11 +16,11 @@
         "node": ">=6"
     },
     "dependencies": {
-        "@types/cron": "^1.6.1",
-        "@types/winston": "^2.4.4",
+        "azure-storage": "^2.10.3",
         "cheerio": "^1.0.0-rc.2",
         "cron": "^1.6.0",
         "csv-parse": "^4.3.3",
+        "dotenv": "^8.0.0",
         "fastify": "^2.0.0",
         "minimist": "^1.2.0",
         "puppeteer": "^1.13.0",
@@ -33,14 +33,18 @@
         "@salecycle/fastify-typescript-request-schema": "^3.2.1",
         "@types/chai": "^4.1.7",
         "@types/cheerio": "^0.22.10",
+        "@types/cron": "^1.6.1",
         "@types/csv-parse": "^1.1.12",
+        "@types/dotenv": "^6.1.1",
         "@types/minimist": "^1.2.0",
         "@types/mocha": "^5.2.6",
         "@types/node": "^11.10.4",
         "@types/puppeteer": "^1.12.1",
         "@types/sqlite3": "^3.1.4",
+        "@types/winston": "^2.4.4",
         "chai": "^4.2.0",
         "mocha": "^6.0.2",
-        "mocha-typescript": "^1.1.17"
+        "mocha-typescript": "^1.1.17",
+        "typescript": "^3.5.2"
     }
 }

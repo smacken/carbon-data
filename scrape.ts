@@ -3,11 +3,27 @@ import puppeteer = require('puppeteer');
 import * as sqlite3 from 'sqlite3';
 sqlite3.verbose();
 
+import { Storage } from "./storage";
+
+const tableName = "nzu";
+
 export class NZUScraper {
-    db: sqlite3.Database;
+    db: sqlite3.Database | null = null;
+    useSqlite: boolean = true;
+    storage: Storage | null = null;
     constructor() {
-        this.db = new sqlite3.Database('data/nzu.db');
+        this.useSqlite = process.env.STORAGE == 'sqlite';
+        this.db = this.useSqlite ? new sqlite3.Database('data/nzu.db') : null;
     }
+
+    public static CreateAsync = async () => {
+        const me = new NZUScraper();
+  
+        if (!me.useSqlite){
+            me.storage = await await Storage.Create(tableName);
+        }
+        return me;
+     };
 
     getDateTime() {
         var date = new Date();
@@ -15,6 +31,26 @@ export class NZUScraper {
         var month = date.getMonth() + 1;
         var day  = date.getDate();
         return `${year}-${month}-${day}`;
+    }
+
+    async store(vals: any[]){
+        if (this.useSqlite){
+            const sql = `INSERT INTO Prices (date, bid, offer, spot) VALUES(?,?,?,?)`;
+              const params = [this.getDateTime(), Number(vals[0]), Number(vals[1]), Number(vals[2])];
+              this.db!.run(sql, params, (err: Error) => {
+                if (err) return console.log(err.message);
+                console.log('insert completed');
+              });
+        } else {
+            await this.storage!.AddOrMergeRecord({
+                PartitionKey: "nzu",
+                RowKey: this.getDateTime().replace('-', ''),
+                date: this.getDateTime(),
+                bid: Number(vals[0]),
+                offer: Number(vals[1]),
+                spot: Number(vals[2])
+              });
+        }
     }
 
     async scrape() {
@@ -31,18 +67,14 @@ export class NZUScraper {
             console.log(this.getDateTime() + ' b: ' + bid + ' o: ' + offer + ' s: ' + spot);
             
             if(!!bid && !!offer && !!spot) {
-              const sql = `INSERT INTO Prices (date, bid, offer, spot) VALUES(?,?,?,?)`;
-              const params = [this.getDateTime(), Number(bid), Number(offer), Number(spot)];
-              this.db.run(sql, params, (err: Error) => {
-                if (err) return console.log(err.message);
-                console.log('insert completed');
-              });
+                await this.store([bid, offer, spot])
             }
             await browser.close();
         } catch (error) {
             console.error(error);
         }
     
-        this.db.close();
+        if (this.useSqlite)
+            this.db!.close();
     }
 }

@@ -2,7 +2,7 @@
 
 Data feed for carbon NZU
 
-![alt text](https://raw.githubusercontent.com/smacken/carbon-data/master/notebooks/nzu-plot.png)
+![NZU plot](https://github.com/smacken/carbon-data/blob/master/notebooks/nzu-plot.png)
 
 ## Getting Started
 
