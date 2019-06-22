@@ -1,8 +1,6 @@
 import * as storage from "azure-storage"
 import * as dotenv from "dotenv";
 
-dotenv.load();
-
 export interface ITableEntity {
     PartitionKey?: string;
     RowKey?: string;
@@ -71,9 +69,9 @@ export class Storage{
           }
         });
         return result;
-      }
+    }
 
-      async GetRecord(partitionKey: string, rowKey: string): Promise<ITableEntity> {
+    async GetRecord(partitionKey: string, rowKey: string): Promise<ITableEntity> {
         return new Promise<ITableEntity>((resolve, reject) => {
           this.tableService.retrieveEntity<ITableEntity>(
             this.tableName,
@@ -85,5 +83,5 @@ export class Storage{
             }
           );
         });
-      }
+    }
 }

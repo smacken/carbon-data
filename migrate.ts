@@ -1,9 +1,15 @@
+import dotenv, { DotenvConfigOptions } from 'dotenv'
 import * as sqlite3 from 'sqlite3';
 import { Storage } from "./storage";
 
 const tableName = "nzu";
 sqlite3.verbose();
-// require('dotenv').config()
+
+const result = dotenv.config({ debug: process.env.DEBUG } as DotenvConfigOptions)
+
+if (result.error) {
+  throw result.error
+}
 
 export interface ISpotPrice {
     date: string;
@@ -21,7 +27,7 @@ export class Migrate {
     db: sqlite3.Database;
     storage: Storage
     constructor(store: Storage) {
-        this.db = new sqlite3.Database('data/nzu.db');
+        this.db = new sqlite3.Database(process.env.DB_PATH!);
         this.storage = store;
     }
     allAsync(sql: string) : Promise<any[]> {
@@ -34,14 +40,15 @@ export class Migrate {
     }
 
     async getPrices(): Promise<ISpotPrice[]> {
-        let sql = `SELECT * FROM Prices`;
-        let rows = await this.allAsync(sql);
-        return rows.map<ISpotPrice>((row: any) => new Spot((row as any).date, (row as any).spot, (row as any).bid, (row as any).offer));
+        let rows = await this.allAsync(`SELECT date, spot, bid, offer FROM Prices`);
+        return rows.map<ISpotPrice>((row: any) => 
+            new Spot((row as any).date, (row as any).spot, (row as any).bid, (row as any).offer));
     }
 }
 
 (async () => {
     try {
+        console.log('Migrating prices to azure');
         const storage = await Storage.Create(tableName);
         let migration = new Migrate(storage);
         let prices: ISpotPrice[] = await migration.getPrices();
@@ -55,6 +62,7 @@ export class Migrate {
                 spot: price.spot
             });
         }
+        console.log('Migrating completed');
     } catch (error) {
         console.error(error);
     }

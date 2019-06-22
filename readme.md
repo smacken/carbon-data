@@ -2,7 +2,7 @@
 
 Data feed for carbon NZU
 
-![NZU plot](https://github.com/smacken/carbon-data/blob/master/notebooks/nzu-plot.png)
+![NZU plot](./notebooks/nzu-plot.png)
 
 ## Getting Started
 
@@ -37,7 +37,7 @@ git clone https://github.com/smacken/carbon-data.git
 Configure the location/destination to import data to
 
 ```
-config.json > 'sourcePath', 'destinationPath'
+.env > 'DB_Path', 'STORAGE'
 ```
 
 ### Prerequisites
@@ -49,7 +49,28 @@ Node.js/npm
 
 Schedule daily data feed for bid, offer and spot price. Data is stored in nzu.db.
 
-## Import csv data
+Schedule to retrieve daily nzu data
+```
+node schedule.js
+```
+
+Retrieve current daily nzu data
+```
+node index.js
+```
+
+## Import
+
+Migrate sqlite db
+
+```
+node migrate.js
+```
 
 ## API Server
 
+Run a web server to serve price data with json
+
+```
+node server.js
+```
