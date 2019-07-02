@@ -2,16 +2,17 @@
 
 Data feed for carbon NZU
 
-![NZU plot](./notebooks/nzu-plot.png)
+![NZU plot](https://raw.githubusercontent.com/smacken/carbon-data/master/docfx/plot.PNG)
 
 ## Getting Started
 
 Clone or download the carbon-data importer.
 
-Configure where to import your data
+Configure data settings
+Copy .env.sample to become .env
 
 ```
-config.json
+.env.sample
 ```
 
 Download & Run to import nzu data.
