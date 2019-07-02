@@ -32,7 +32,7 @@
     "devDependencies": {
         "@salecycle/fastify-typescript-request-schema": "^3.2.1",
         "@types/chai": "^4.1.7",
-        "@types/cheerio": "^0.22.10",
+        "@types/cheerio": "^0.22.11",
         "@types/cron": "^1.6.1",
         "@types/csv-parse": "^1.1.12",
         "@types/dotenv": "^6.1.1",
