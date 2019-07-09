@@ -18,7 +18,7 @@
     "dependencies": {
         "azure-storage": "^2.10.3",
         "cheerio": "^1.0.0-rc.3",
-        "cron": "^1.6.0",
+        "cron": "^1.7.1",
         "csv-parse": "^4.3.3",
         "dotenv": "^8.0.0",
         "fastify": "^2.0.0",
