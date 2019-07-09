@@ -26,7 +26,7 @@
         "puppeteer": "^1.13.0",
         "request": "^2.88.0",
         "request-promise": "^4.2.4",
-        "sqlite": "^3.0.2",
+        "sqlite": "^3.0.3",
         "winston": "^3.2.1"
     },
     "devDependencies": {
