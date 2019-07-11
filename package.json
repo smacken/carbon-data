@@ -11,6 +11,10 @@
         "test": "./node_modules/.bin/mocha --reporter spec"
     },
     "author": "Scott Mackenzie",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/smacken/carbon-data.git"
+    },
     "license": "ISC",
     "engines": {
         "node": ">=6"
