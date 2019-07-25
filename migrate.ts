@@ -26,9 +26,8 @@ export class Spot implements ISpotPrice{
 export class Migrate {
     db: sqlite3.Database;
     storage: Storage
-    constructor(store: Storage) {
+    constructor(public storeage: Storage) {
         this.db = new sqlite3.Database(process.env.DB_PATH!);
-        this.storage = store;
     }
     allAsync(sql: string) : Promise<any[]> {
         return new Promise((resolve, reject) => { 
