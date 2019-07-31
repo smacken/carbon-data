@@ -34,7 +34,7 @@
         "winston": "^3.2.1"
     },
     "devDependencies": {
-        "@salecycle/fastify-typescript-request-schema": "^3.2.1",
+        "@salecycle/fastify-typescript-request-schema": "^3.2.2",
         "@types/chai": "^4.1.7",
         "@types/cheerio": "^0.22.12",
         "@types/cron": "^1.7.1",
