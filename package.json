@@ -35,7 +35,7 @@
     },
     "devDependencies": {
         "@salecycle/fastify-typescript-request-schema": "^3.2.2",
-        "@types/chai": "^4.1.7",
+        "@types/chai": "^4.2.0",
         "@types/cheerio": "^0.22.12",
         "@types/cron": "^1.7.1",
         "@types/csv-parse": "^1.2.2",
