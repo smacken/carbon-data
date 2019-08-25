@@ -8,7 +8,7 @@ export interface ITableEntity {
     [key: string]: string | number | boolean | undefined;
 }
 
-export class Storage{
+export class Storage {
     private tableService : storage.TableService;
     private tableName: string = "nzu";
     private constructor() {
@@ -20,7 +20,7 @@ export class Storage{
         await me.CreateIfDoesntExistTable();
         return me;
     }
-    private async CreateIfDoesntExistTable() : Promise<storage.TableService.TableResult> {
+    private async CreateIfDoesntExistTable(): Promise<storage.TableService.TableResult> {
         return new Promise((resolve, reject) =>{
             try {
                 this.tableService.createTableIfNotExists(this.tableName, (err,result) => {

@@ -76,7 +76,7 @@ export class Storage{
         });
         return result;
       }
-    private async CreateIfDoesntExistTable() : Promise<storage.TableService.TableResult> {
+    private async CreateIfDoesntExistTable(): Promise<storage.TableService.TableResult> {
         return new Promise((resolve, reject) =>{
             try {
                 this.tableService.createTableIfNotExists(this.tableName, (err,result) => {

@@ -37,7 +37,7 @@ const schema = {
       from: { type: 'string' },
       to: { type: 'string' }
     }
-}
+};
 fastify.get('/', {schema}, (request: any, reply: any) => {
     let params = request.query;
     let from = !!params['from'] ? getDateTime(parseDate(params['from'])) : null;

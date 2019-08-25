@@ -1,6 +1,6 @@
 import $ from 'cheerio';
 import puppeteer = require('puppeteer');
-import * as sqlite3 from 'sqlite3';
+import * as sqlite3 from "sqlite3";
 sqlite3.verbose();
 
 let db = new sqlite3.Database('data/nzu.db');
@@ -23,11 +23,11 @@ function getDateTime() {
         
         let bid = $('#page_market table tr:first-child td.col2', content).text().trim();
         let offer = $('#page_market table tr:first-child td.col3', content).text().trim();
-        let spot = $('#page_market table tr:first-child td.col4', content).text().trim()
+        let spot = $('#page_market table tr:first-child td.col4', content).text().trim();
         if (!bid) bid = '0';
         if (!offer) offer = '0';
         console.log(getDateTime() + ' b: ' + bid + ' o: ' + offer + ' s: ' + spot);
-        
+
         if(!!spot) {
           const sql = `INSERT INTO Prices (date, bid, offer, spot) VALUES(?,?,?,?)`;
           const params = [getDateTime(), Number(bid), Number(offer), Number(spot)];
