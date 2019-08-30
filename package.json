@@ -49,6 +49,6 @@
         "chai": "^4.2.0",
         "mocha": "^6.2.0",
         "mocha-typescript": "^1.1.17",
-        "typescript": "^3.5.3"
+        "typescript": "^3.6.2"
     }
 }
