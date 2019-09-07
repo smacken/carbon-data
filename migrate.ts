@@ -5,7 +5,7 @@ import { Storage } from "./storage";
 const tableName = "nzu";
 sqlite3.verbose();
 
-const result = dotenv.config({ debug: process.env.DEBUG } as DotenvConfigOptions)
+const result = dotenv.config() //{ debug: process.env.DEBUG } as DotenvConfigOptions
 
 if (result.error) {
   throw result.error

@@ -91,7 +91,7 @@ export class Storage {
           this.tableService.queryEntities<ITableEntity>(
             this.tableName,
             query,
-            undefined,
+            null,
             {payloadFormat:"application/json;odata=nometadata"},
             (err: any, result: any) => {
               if (err) reject(err);
