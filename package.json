@@ -5,6 +5,9 @@
     "main": "index.js",
     "scripts": {
         "start": "node index.js",
+        "build": "tsc",
+        "watch:build": "tsc --watch",
+        "lint": "tslint -c tslint.json",
         "scrape": "node index.js",
         "import": "node import.js --input data/nzu-edited-raw-prices-data.csv",
         "server": "node server.js --port 3000",

@@ -91,11 +91,11 @@ export class Storage {
           this.tableService.queryEntities<ITableEntity>(
             this.tableName,
             query,
-            null,
+            undefined,
             {payloadFormat:"application/json;odata=nometadata"},
-            (err, result) => {
+            (err: any, result: any) => {
               if (err) reject(err);
-              resolve(result.entries.map(entity => this.tableRecordToJavacript(entity)));
+              resolve(result.entries.map(this.tableRecordToJavacript));
             }
           );
         });
