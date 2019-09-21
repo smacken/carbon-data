@@ -26,7 +26,7 @@
         "azure-storage": "^2.10.3",
         "cheerio": "^1.0.0-rc.3",
         "cron": "^1.7.2",
-        "csv-parse": "^4.4.5",
+        "csv-parse": "^4.4.6",
         "dotenv": "^8.1.0",
         "fastify": "^2.8.0",
         "minimist": "^1.2.0",
@@ -39,7 +39,7 @@
     "devDependencies": {
         "@azure/functions": "^1.0.3",
         "@salecycle/fastify-typescript-request-schema": "^3.2.2",
-        "@types/chai": "^4.2.2",
+        "@types/chai": "^4.2.3",
         "@types/cheerio": "^0.22.13",
         "@types/cron": "^1.7.1",
         "@types/csv-parse": "^1.2.2",
