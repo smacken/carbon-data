@@ -1,14 +1,14 @@
-import dotenv, { DotenvConfigOptions } from 'dotenv'
+import dotenv, { DotenvConfigOptions } from 'dotenv';
 import * as sqlite3 from 'sqlite3';
-import { Storage } from "./storage";
+import { Storage } from './storage';
 
-const tableName = "nzu";
+const tableName = 'nzu';
 sqlite3.verbose();
 
-const result = dotenv.config() //{ debug: process.env.DEBUG } as DotenvConfigOptions
+const result = dotenv.config(); // { debug: process.env.DEBUG } as DotenvConfigOptions
 
 if (result.error) {
-  throw result.error
+  throw result.error;
 }
 
 export interface ISpotPrice {
@@ -18,8 +18,8 @@ export interface ISpotPrice {
     spot: number;
 }
 
-export class Spot implements ISpotPrice{
-    constructor(public date: string, public spot: number, public bid: number, public offer: number){
+export class Spot implements ISpotPrice {
+    constructor(public date: string, public spot: number, public bid: number, public offer: number) {
     }
 }
 
@@ -28,8 +28,8 @@ export class Migrate {
     constructor(public storeage: Storage) {
         this.db = new sqlite3.Database(process.env.DB_PATH!);
     }
-    allAsync(sql: string) : Promise<any[]> {
-        return new Promise((resolve, reject) => { 
+    allAsync(sql: string): Promise<any[]> {
+        return new Promise((resolve, reject) => {
             this.db.all(sql, (error: Error, rows: any[]) => {
                 if (!!error) reject(error);
                 resolve(rows);
@@ -39,7 +39,7 @@ export class Migrate {
 
     async getPrices(): Promise<ISpotPrice[]> {
         let rows = await this.allAsync(`SELECT date, spot, bid, offer FROM Prices`);
-        return rows.map<ISpotPrice>((row: any) => 
+        return rows.map<ISpotPrice>((row: any) =>
             new Spot((row as any).date, (row as any).spot, (row as any).bid, (row as any).offer));
     }
 }
@@ -52,7 +52,7 @@ export class Migrate {
         let prices: ISpotPrice[] = await migration.getPrices();
         for (const price of prices) {
             await storage.AddOrMergeRecord({
-                PartitionKey: "nzu",
+                PartitionKey: 'nzu',
                 RowKey: price.date.replace('-', ''),
                 date: price.date,
                 bid: price.bid,

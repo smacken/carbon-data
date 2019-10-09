@@ -1,6 +1,6 @@
 import $ from 'cheerio';
 import puppeteer = require('puppeteer');
-import * as sqlite3 from "sqlite3";
+import * as sqlite3 from 'sqlite3';
 sqlite3.verbose();
 
 let db = new sqlite3.Database('data/nzu.db');
@@ -11,7 +11,7 @@ function getDateTime(): string {
   const month = date.getMonth() + 1;
   const day  = date.getDate();
   return `${year}-${month}-${day}`;
-};
+}
 
 (async () => {
     try {
@@ -20,7 +20,7 @@ function getDateTime(): string {
         await page.goto('https://www.commtrade.co.nz/', {waitUntil: 'domcontentloaded'});
         await page.waitFor('#page_market');
         let content = await page.content();
-        
+
         let bid = $('#page_market table tr:first-child td.col2', content).text().trim();
         let offer = $('#page_market table tr:first-child td.col3', content).text().trim();
         let spot = $('#page_market table tr:first-child td.col4', content).text().trim();
@@ -28,7 +28,7 @@ function getDateTime(): string {
         if (!offer) offer = '0';
         console.log(getDateTime() + ' b: ' + bid + ' o: ' + offer + ' s: ' + spot);
 
-        if(!!spot) {
+        if (!!spot) {
           const sql = `INSERT INTO Prices (date, bid, offer, spot) VALUES(?,?,?,?)`;
           const params = [getDateTime(), Number(bid), Number(offer), Number(spot)];
           db.run(sql, params, (err: Error) => {

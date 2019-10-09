@@ -1,6 +1,6 @@
-import { AzureFunction, Context, HttpRequest } from "@azure/functions"
-import * as storage from "azure-storage"
-import * as dotenv from "dotenv";
+import { AzureFunction, Context, HttpRequest } from '@azure/functions';
+import * as storage from 'azure-storage';
+import * as dotenv from 'dotenv';
 
 export interface ITableEntity {
     PartitionKey?: string;
@@ -9,26 +9,26 @@ export interface ITableEntity {
 }
 
 export class Storage {
-    private tableService : storage.TableService;
-    private tableName: string = "nzu";
+    private tableService: storage.TableService;
+    private tableName: string = 'nzu';
     private constructor() {
         this.tableService = storage.createTableService();
     }
-    static async Create(tableName: string) : Promise<Storage> {
-        var me = new Storage()
+    static async Create(tableName: string): Promise<Storage> {
+        let me = new Storage();
         me.tableName = tableName;
         await me.CreateIfDoesntExistTable();
         return me;
     }
     private async CreateIfDoesntExistTable(): Promise<storage.TableService.TableResult> {
-        return new Promise((resolve, reject) =>{
+        return new Promise((resolve, reject) => {
             try {
-                this.tableService.createTableIfNotExists(this.tableName, (err,result) => {
-                    if(err) throw err;
+                this.tableService.createTableIfNotExists(this.tableName, (err, result) => {
+                    if (err) throw err;
                     resolve(result);
                 });
             } catch (err) { reject(err); }
-        })
+        });
     }
 
     private convertToTableRecord(entity: ITableEntity) {
@@ -62,10 +62,10 @@ export class Storage {
         let result: any = {};
         Object.keys(entity).forEach(k => {
           // we do not want to decode metadata
-          if (k !== ".metadata") {
+          if (k !== '.metadata') {
             let prop = Object.getOwnPropertyDescriptor(entity, k);
             if (prop) {
-              result[k] = prop.value["_"];
+              result[k] = prop.value['_'];
             }
           }
         });
@@ -92,7 +92,7 @@ export class Storage {
             this.tableName,
             query,
             null,
-            {payloadFormat:"application/json;odata=nometadata"},
+            {payloadFormat: 'application/json;odata=nometadata'},
             (err: any, result: any) => {
               if (err) reject(err);
               resolve(result.entries.map(this.tableRecordToJavacript));
@@ -113,13 +113,13 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
         context.res = {
             body: entities
             // status: 200, /* Defaults to 200 */
-            //body: "Hello " + (req.query.name || req.body.name)
+            // body: "Hello " + (req.query.name || req.body.name)
         };
     }
     else {
         context.res = {
             status: 400,
-            body: "Please pass a name on the query string or in the request body"
+            body: 'Please pass a name on the query string or in the request body'
         };
     }
 };
