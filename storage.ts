@@ -1,5 +1,5 @@
-import * as storage from "azure-storage"
-import * as dotenv from "dotenv";
+import * as storage from 'azure-storage';
+import * as dotenv from 'dotenv';
 
 export interface ITableEntity {
     PartitionKey?: string;
@@ -7,27 +7,27 @@ export interface ITableEntity {
     [key: string]: string | number | boolean | undefined;
 }
 
-export class Storage{
-    private tableService : storage.TableService;
-    private tableName: string = "nzu";
+export class Storage {
+    private tableService: storage.TableService;
+    private tableName: string = 'nzu';
     private constructor() {
         this.tableService = storage.createTableService();
     }
-    static async Create(tableName: string) : Promise<Storage> {
-        var me = new Storage()
+    static async Create(tableName: string): Promise<Storage> {
+        let me = new Storage();
         me.tableName = tableName;
         await me.CreateIfDoesntExistTable();
         return me;
     }
-    private async CreateIfDoesntExistTable() : Promise<storage.TableService.TableResult> {
-        return new Promise((resolve, reject) =>{
+    private async CreateIfDoesntExistTable(): Promise<storage.TableService.TableResult> {
+        return new Promise((resolve, reject) => {
             try {
-                this.tableService.createTableIfNotExists(this.tableName, (err,result) => {
-                    if(err) throw err;
+                this.tableService.createTableIfNotExists(this.tableName, (err, result) => {
+                    if (err) throw err;
                     resolve(result);
                 });
             } catch (err) { reject(err); }
-        })
+        });
     }
 
     private convertToTableRecord(entity: ITableEntity) {
@@ -61,10 +61,10 @@ export class Storage{
         let result: any = {};
         Object.keys(entity).forEach(k => {
           // we do not want to decode metadata
-          if (k !== ".metadata") {
+          if (k !== '.metadata') {
             let prop = Object.getOwnPropertyDescriptor(entity, k);
             if (prop) {
-              result[k] = prop.value["_"];
+              result[k] = prop.value['_'];
             }
           }
         });

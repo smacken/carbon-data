@@ -32,8 +32,8 @@ export class NZUScraper {
         return `${year}-${month}-${day}`;
     }
 
-    async store(vals: any[]){
-        if (this.useSqlite){
+    async store(vals: any[]) {
+        if (this.useSqlite) {
             const sql = `INSERT INTO Prices (date, bid, offer, spot) VALUES(?,?,?,?)`;
               const params = [this.getDateTime(), Number(vals[0]), Number(vals[1]), Number(vals[2])];
               this.db!.run(sql, params, (err: Error) => {
@@ -42,7 +42,7 @@ export class NZUScraper {
               });
         } else {
             await this.storage!.AddOrMergeRecord({
-                PartitionKey: "nzu",
+                PartitionKey: 'nzu',
                 RowKey: this.getDateTime().replace('-', ''),
                 date: this.getDateTime(),
                 bid: Number(vals[0]),
@@ -59,20 +59,20 @@ export class NZUScraper {
             await page.goto('https://www.commtrade.co.nz/', {waitUntil: 'networkidle2'});
             await page.waitFor('#page_market');
             let content = await page.content();
-            
+
             let bid = $('#page_market table tr:first-child td.col2', content).text().trim();
             let offer = $('#page_market table tr:first-child td.col3', content).text().trim();
-            let spot = $('#page_market table tr:first-child td.col4', content).text().trim()
+            let spot = $('#page_market table tr:first-child td.col4', content).text().trim();
             console.log(this.getDateTime() + ' b: ' + bid + ' o: ' + offer + ' s: ' + spot);
-            
-            if(!!bid && !!offer && !!spot) {
-                await this.store([bid, offer, spot])
+
+            if (!!bid && !!offer && !!spot) {
+                await this.store([bid, offer, spot]);
             }
             await browser.close();
         } catch (error) {
             console.error(error);
         }
-    
+
         if (this.useSqlite)
             this.db!.close();
     }

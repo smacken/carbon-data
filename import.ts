@@ -1,6 +1,6 @@
 import * as fs from 'fs';
-const parse = require('csv-parse')
-var argv = require('minimist')(process.argv.slice(2));
+const parse = require('csv-parse');
+let argv = require('minimist')(process.argv.slice(2));
 import { promisify } from 'util';
 import * as sqlite3 from 'sqlite3';
 sqlite3.verbose();
@@ -9,7 +9,7 @@ const readFile = promisify(fs.readFile);
 const parseCsv = promisify(parse);
 
 let inputPath = argv['input'];
-inputPath = inputPath.replace(/['"]+/g, '')
+inputPath = inputPath.replace(/['"]+/g, '');
 const hasHeader = argv['header'] || false;
 const dbPath = argv['db'] || 'data/nzu.db';
 
@@ -25,11 +25,11 @@ export function fileExists(filepath: string): Promise<boolean> {
 
 (async () => {
     try {
-        if (!await fileExists(inputPath)) throw Error("The file given does not exist for import.");
+        if (!await fileExists(inputPath)) throw Error('The file given does not exist for import.');
         let fileData = await readFile(inputPath);
         const csvOptions = {
-            columns: true, 
-            trim: true, 
+            columns: true,
+            trim: true,
             from: hasHeader ? 1 : 0
         };
         let rows = await parseCsv(fileData, csvOptions);
