@@ -5,13 +5,13 @@ sqlite3.verbose();
 
 let db = new sqlite3.Database('data/nzu.db');
 
-function getDateTime() {
-  var date = new Date();
-  var year = date.getFullYear();
-  var month = date.getMonth() + 1;
-  var day  = date.getDate();
+function getDateTime(): string {
+  let date = new Date();
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day  = date.getDate();
   return `${year}-${month}-${day}`;
-}
+};
 
 (async () => {
     try {

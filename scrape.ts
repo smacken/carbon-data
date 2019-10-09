@@ -3,33 +3,32 @@ import puppeteer = require('puppeteer');
 import * as sqlite3 from 'sqlite3';
 sqlite3.verbose();
 
-import { Storage } from "./storage";
+import { Storage } from './storage';
 
-const tableName = "nzu";
+const tableName = 'nzu';
 
 export class NZUScraper {
     db: sqlite3.Database | null = null;
     useSqlite: boolean = true;
     storage: Storage | null = null;
     constructor() {
-        this.useSqlite = process.env.STORAGE == 'sqlite';
+        this.useSqlite = process.env.STORAGE === 'sqlite';
         this.db = this.useSqlite ? new sqlite3.Database('data/nzu.db') : null;
     }
 
     public static CreateAsync = async () => {
         const me = new NZUScraper();
-  
-        if (!me.useSqlite){
+        if (!me.useSqlite) {
             me.storage = await await Storage.Create(tableName);
         }
         return me;
-     };
+     }
 
-    getDateTime() {
-        var date = new Date();
-        var year = date.getFullYear();
-        var month = date.getMonth() + 1;
-        var day  = date.getDate();
+    getDateTime(): string {
+        const date = new Date();
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
+        const day  = date.getDate();
         return `${year}-${month}-${day}`;
     }
 
