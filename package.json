@@ -43,7 +43,7 @@
         "@types/cheerio": "^0.22.13",
         "@types/cron": "^1.7.1",
         "@types/csv-parse": "^1.2.2",
-        "@types/dotenv": "^6.1.1",
+        "@types/dotenv": "^8.2.0",
         "@types/minimist": "^1.2.0",
         "@types/mocha": "^5.2.7",
         "@types/node": "^12.11.7",
