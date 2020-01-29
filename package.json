@@ -46,7 +46,7 @@
         "@types/dotenv": "^8.2.0",
         "@types/minimist": "^1.2.0",
         "@types/mocha": "^5.2.7",
-        "@types/node": "^13.5.0",
+        "@types/node": "^13.5.1",
         "@types/puppeteer": "^2.0.0",
         "@types/sqlite3": "^3.1.6",
         "@types/winston": "^2.4.4",
