@@ -37,7 +37,7 @@
         "winston": "^3.2.1"
     },
     "devDependencies": {
-        "@azure/functions": "^1.0.3",
+        "@azure/functions": "^1.2.0",
         "@salecycle/fastify-typescript-request-schema": "^3.2.2",
         "@types/chai": "^4.2.9",
         "@types/cheerio": "^0.22.16",
