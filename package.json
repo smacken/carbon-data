@@ -51,7 +51,7 @@
         "@types/sqlite3": "^3.1.6",
         "@types/winston": "^2.4.4",
         "chai": "^4.2.0",
-        "mocha": "^7.0.1",
+        "mocha": "^7.1.0",
         "mocha-typescript": "^1.1.17",
         "tslint": "^6.0.0",
         "typescript": "^3.8.2"
