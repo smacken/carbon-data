@@ -40,7 +40,7 @@
         "@azure/functions": "^1.2.2",
         "@salecycle/fastify-typescript-request-schema": "^3.2.2",
         "@types/chai": "^4.2.11",
-        "@types/cheerio": "^0.22.18",
+        "@types/cheerio": "^0.22.19",
         "@types/cron": "^1.7.2",
         "@types/csv-parse": "^1.2.2",
         "@types/dotenv": "^8.2.0",
