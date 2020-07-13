@@ -30,7 +30,7 @@
         "dotenv": "^8.2.0",
         "fastify": "^3.0.0",
         "minimist": "^1.2.5",
-        "puppeteer": "^5.0.0",
+        "puppeteer": "^5.1.0",
         "request": "^2.88.2",
         "request-promise": "^4.2.5",
         "sqlite": "^4.0.11",
