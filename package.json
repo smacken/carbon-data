@@ -28,7 +28,7 @@
         "cron": "^1.8.2",
         "csv-parse": "^4.10.1",
         "dotenv": "^8.2.0",
-        "fastify": "^3.0.2",
+        "fastify": "^3.0.3",
         "minimist": "^1.2.5",
         "puppeteer": "^5.1.0",
         "request": "^2.88.2",
