@@ -33,7 +33,7 @@
         "puppeteer": "^5.4.1",
         "request": "^2.88.2",
         "request-promise": "^4.2.6",
-        "sqlite": "^4.0.15",
+        "sqlite": "^4.0.23",
         "winston": "^3.3.3"
     },
     "devDependencies": {
